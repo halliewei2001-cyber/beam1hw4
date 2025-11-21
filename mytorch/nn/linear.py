@@ -63,3 +63,4 @@ class Linear:
         
         # Return gradient of loss wrt input
         return dLdA
+
