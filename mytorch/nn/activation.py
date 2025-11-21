@@ -20,11 +20,11 @@ class Softmax:
         if self.dim > len(Z.shape) or self.dim < -len(Z.shape):
             raise ValueError("Dimension to apply softmax to is greater than the number of dimensions in Z")
         
-        max_z, _ = torch.max(Z, dim=self.dim, keepdim=True)
+        max_z, _ = np.max(Z, axis=self.dim, keepdims=True)
         Z_shifted = Z - max_z
 
-        exp_z = torch.exp(Z_shifted)
-        sum_exp = torch.sum(exp_z, dim=self.dim, keepdim=True)
+        exp_z = np.exp(Z_shifted)
+        sum_exp = np.sum(exp_z, axis=self.dim, keepdims=True)
         # TODO: Implement forward pass
         # Compute the softmax in a numerically stable way
         # Apply it to the dimension specified by the `dim` parameter
