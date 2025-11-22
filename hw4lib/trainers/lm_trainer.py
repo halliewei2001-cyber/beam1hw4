@@ -186,7 +186,7 @@ class LMTrainer(BaseTrainer):
             targets_shifted, targets_golden, lengths = batch
             targets_shifted = targets_shifted.to(self.device)
             targets_golden = targets_golden.to(self.device)
-            targets_shifted, targets_golden, lengths = batch
+            lengths = lengths.to(self.device)
 
             # Forward pass
             with torch.inference_mode():
