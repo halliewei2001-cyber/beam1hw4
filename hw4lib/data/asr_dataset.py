@@ -1,6 +1,7 @@
 from typing import Literal, Tuple, Optional
 import os
 import numpy as np
+from sympy import O
 from tqdm import tqdm
 import torch
 from torch.utils.data import Dataset 
@@ -101,7 +102,7 @@ class ASRDataset(Dataset):
             ]
         )
         # TODO: Take subset
-        subset_size      = int(len(self.text_files) * (self.config.get("subset", 1.0)))
+        subset_size      = int(len(self.fbank_files) * self.config.get("subset", 1.0))
         self.fbank_files = self.fbank_files[:subset_size]
         
         # TODO: Get the number of samples in the dataset  
@@ -111,7 +112,7 @@ class ASRDataset(Dataset):
         # Why will test-clean need to be handled differently?
         if self.partition != "test-clean":
             # TODO: Use root and partition to get the text directory
-            self.text_dir   = len(self.fbank_files)
+            self.text_dir   = os.path.join(root, self.partition, "text")
 
             # TODO: Get all text files in the text directory in sorted order  
             self.text_files = sorted(
