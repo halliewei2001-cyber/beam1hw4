@@ -64,7 +64,7 @@ class ASRTrainer(BaseTrainer):
         # Use value in config to set the label_smoothing argument
         self.ce_criterion = nn.CrossEntropyLoss(
             ignore_index=self.tokenizer.pad_id,
-            label_smoothing=label_smoothing
+            label_smoothing=config['loss']['label_smoothing']
             )
         
         # TODO: Initialize CTC loss if needed
