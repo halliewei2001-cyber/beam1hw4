@@ -107,7 +107,7 @@ class ASRTrainer(BaseTrainer):
             # TODO: Unpack batch and move to device
             feats, targets_shifted, targets_golden, feat_lengths, transcript_lengths = batch
 
-            with torch.autocast(device_type=self.device, dtype=torch.float16):
+            with torch.autocast(device_type="cuda", dtype=torch.float16):
                 # TODO: get raw predictions and attention weights and ctc inputs from model
                 seq_out, curr_att, ctc_inputs = self.model(
                     feats,
