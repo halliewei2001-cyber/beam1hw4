@@ -138,9 +138,7 @@ class ASRTrainer(BaseTrainer):
                         ctc_input_lengths,   # (B,)
                         transcript_lengths   # (B,)
                     )
-            
-
-                    input_lengths = self.model.get_ctc_input_lengths(feat_lengths)
+    
 
                     ctc_loss = self.ctc_criterion(
                         ctc_loss,                
